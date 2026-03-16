@@ -3,12 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Paper Scissors</title>
+    <title>Animated Rock Paper Scissors</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="game-container">
+    <div class="background-elements">
+        <span class="shape">✊</span>
+        <span class="shape">✋</span>
+        <span class="shape">✌️</span>
+        <span class="shape">✊</span>
+        <span class="shape">✋</span>
+        <span class="shape">✌️</span>
+    </div>
+
+    <div id="start-screen" class="glass-panel">
         <h1>Rock, Paper, Scissors</h1>
+        <p>Select your game mode:</p>
+        <button id="btn-1p" class="menu-btn">1 Player (vs Robot) 🤖</button>
+        <button id="btn-2p" class="menu-btn">2 Players (P1 vs P2) 🧑‍🤝‍🧑</button>
+    </div>
+
+    <div id="game-screen" class="glass-panel hidden">
+        <h2 id="turn-indicator">Player 1's Turn</h2>
         
         <div class="choices">
             <button id="rock" class="choice-btn">Rock ✊</button>
@@ -16,10 +32,11 @@
             <button id="scissors" class="choice-btn">Scissors ✌️</button>
         </div>
 
-        <div class="results">
-            <p>You chose: <span id="user-choice">--</span></p>
-            <p>Computer chose: <span id="computer-choice">--</span></p>
+        <div id="results-area" class="results hidden">
+            <p id="matchup-text">--</p>
             <h2 id="result-text">Let's Play!</h2>
+            <button id="reset-btn" class="menu-btn small">Play Again</button>
+            <button id="home-btn" class="menu-btn small outline">Change Mode</button>
         </div>
     </div>
 
