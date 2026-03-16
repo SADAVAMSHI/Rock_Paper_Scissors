@@ -1,4 +1,4 @@
-/* Centers everything on the screen and sets a background color */
+/* Vibrant Animated Gradient Background */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
@@ -6,48 +6,90 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #f4f4f9;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ff007f, #7000ff, #00d2ff);
+    background-size: 300% 300%;
+    animation: gradientShift 10s ease infinite;
 }
 
-/* Styles the main game box */
-.game-container {
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Floating Background Elements */
+.background-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.shape {
+    position: absolute;
+    font-size: 3rem;
+    opacity: 0.3;
+    animation: floatUp 12s linear infinite;
+    bottom: -100px;
+}
+
+/* Randomizing the floating shapes */
+.shape:nth-child(1) { left: 10%; animation-duration: 10s; animation-delay: 0s; }
+.shape:nth-child(2) { left: 30%; animation-duration: 14s; animation-delay: 2s; }
+.shape:nth-child(3) { left: 50%; animation-duration: 12s; animation-delay: 4s; }
+.shape:nth-child(4) { left: 70%; animation-duration: 16s; animation-delay: 1s; }
+.shape:nth-child(5) { left: 85%; animation-duration: 11s; animation-delay: 5s; }
+.shape:nth-child(6) { left: 20%; animation-duration: 15s; animation-delay: 3s; }
+
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.5; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
+
+/* Glassmorphism UI Panels */
+.glass-panel {
+    position: relative;
+    z-index: 1;
     text-align: center;
-    background: white;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
     width: 350px;
+    color: white;
 }
 
-.choices {
-    margin: 30px 0;
-}
-
-/* Styles the Rock, Paper, Scissors buttons */
-.choice-btn {
+/* Buttons */
+.menu-btn, .choice-btn {
     font-size: 1.1rem;
-    padding: 10px 15px;
-    margin: 5px;
+    padding: 12px 20px;
+    margin: 10px;
     cursor: pointer;
     border: none;
-    border-radius: 6px;
-    background-color: #007bff;
-    color: white;
-    transition: background-color 0.2s ease-in-out;
+    border-radius: 8px;
+    background-color: white;
+    color: #7000ff;
+    font-weight: bold;
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 80%;
 }
 
-/* Changes button color when you hover over them */
-.choice-btn:hover {
-    background-color: #0056b3;
+.choice-btn { width: auto; }
+.menu-btn.small { width: auto; font-size: 1rem; padding: 8px 16px; }
+.menu-btn.outline { background: transparent; border: 2px solid white; color: white; }
+
+.menu-btn:hover, .choice-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* Styles the results text */
-.results {
-    font-size: 1.2rem;
-    color: #555;
-}
-
-#result-text {
-    color: #222;
-    margin-top: 20px;
-}
+.hidden { display: none !important; }
+.results { margin-top: 20px; }
+#result-text { font-size: 1.8rem; margin: 15px 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
